@@ -1,0 +1,16 @@
+.emptyTodoList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: 2rem;
+  color: var(--gray-300);
+  border-top: 1px solid var(--gray-400);
+  padding: 64px 0px;
+  border-radius: 8px;
+}
+
+.emptyTodoList img {
+  margin-bottom: 10px;
+}

@@ -1,0 +1,63 @@
+.task {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1rem;
+  background: var(--gray-500);
+  line-height: 1.6;
+  border-radius: 8px;
+  min-height: 4.5rem;
+  cursor: pointer;
+}
+
+.taskContent {
+  color: var(--gray-100);
+}
+
+.taskContentDone {
+  text-decoration: line-through;
+  color: var(--gray-300);
+}
+
+.taskIsNotDone {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--blue);
+  line-height: 1.6;
+}
+
+.taskIsDone svg {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--purpleDark);
+  line-height: 1.6;
+}
+
+.taskButtonDelete {
+  background: transparent;
+  border: 0;
+  color: var(--gray-300);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+}
+
+.taskButton {
+  background: transparent;
+  display: flex;
+  align-items: flex-start;
+  border: 0;
+  flex: 1;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.taskButtonDelete:hover {
+  color: var(--danger);
+}
+
+.taskButtonDelete svg {
+  margin-right: 0.5rem;
+}

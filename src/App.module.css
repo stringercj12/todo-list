@@ -1,0 +1,89 @@
+.wrapper {
+  max-width: 70rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.wrapper main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form {
+  display: flex;
+  gap: 0.5rem;
+  transform: translateY(-60px);
+}
+
+.form input {
+  padding: 1rem;
+  color: var(--gray-300);
+  background: var(--gray-500);
+  border: 1px solid var(--gray-700);
+  border-radius: 8px;
+  font-size: 1rem;
+  flex: 1;
+}
+
+.form button {
+  padding: 1rem;
+  border-radius: 8px;
+  background: var(--blueDark);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.form button:hover {
+  background: var(--blue);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.created {
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--blue);
+}
+
+.done {
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--purple);
+}
+
+.badge {
+  color: var(--gray-200);
+  background-color: var(--gray-400);
+  border-radius: 10px;
+  font-size: 0.875rem;
+  padding: 2px 8px;
+  font-weight: bold;
+  margin-inline: 5px;
+}
+
+.confetti {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 87.5%;
+  }
+}
