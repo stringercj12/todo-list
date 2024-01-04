@@ -16,15 +16,28 @@
   transform: translateY(-60px);
 }
 
-.form input {
+.form div{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form div input {
   padding: 1rem;
   color: var(--gray-300);
   background: var(--gray-500);
   border: 1px solid var(--gray-700);
   border-radius: 8px;
   font-size: 1rem;
-  flex: 1;
 }
+
+.form div small{
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--danger);
+}
+
 
 .form button {
   padding: 1rem;
@@ -40,6 +53,7 @@
   gap: 0.25rem;
   font-size: 0.875rem;
   font-weight: bold;
+  height: 100%;
 }
 
 .form button:hover {

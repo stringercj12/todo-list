@@ -20,35 +20,50 @@ const lottieOptions = {
 };
 
 function App() {
-  const [tasks, setTasks] = useState<any[]>([]);
+  const [tasks, setTasks] = useState<TaskProps[]>([]);
   const [taskText, setTaskText] = useState('');
+  const [errortaskText, setErrorTaskText] = useState('');
   const [totalTaskDone, setTotalTaskDone] = useState(0);
   const [isConfetti, setIsConfetti] = useState(false);
 
   function handleDeleteTask(taskDelete: TaskProps) {
-    const newTasksList = tasks.filter(task => task.id !== taskDelete.id)
-    setTasks(newTasksList)
-    setTotalTaskDone((state) => {
-      return state === 0 ? 0 : state - 1
+    let totalTaskDone = 0;
+    const newTasksList = tasks.filter(task => {
+      if (task.id !== taskDelete.id && task.isDone) {
+        totalTaskDone++;
+      }
+
+      return task.id !== taskDelete.id;
     });
+    setTasks(newTasksList);
+    setTotalTaskDone(totalTaskDone);
   }
 
-  async function handleDoneTask(taskDelete: TaskProps) {
+  async function handleDoneTask(taskSelected: TaskProps) {
     const newTasksList = tasks.map(task => {
-      if (task.id === taskDelete.id) {
+      if (task.id === taskSelected.id) {
         task.isDone = !task.isDone;
-        setIsConfetti(true);
       }
       return task;
-    })
+    });
 
-    console.table(tasks.find(task => task.id === taskDelete.id))
+
+    console.table(tasks.find(task => task.id === taskSelected.id))
+
+    let totalTaskDone = 0;
+    tasks.find(task => {
+      if (task.isDone) {
+        totalTaskDone++;
+      }
+    });
+
+    if (totalTaskDone === tasks.length) {
+      setIsConfetti(true);
+    }
 
     setTasks(newTasksList)
 
-    setTotalTaskDone((state) => {
-      return state + 1
-    });
+    setTotalTaskDone(totalTaskDone);
 
     setTimeout(() => {
       setIsConfetti(false)
@@ -59,6 +74,11 @@ function App() {
   function handleAddNewTask(event: FormEvent) {
     event.preventDefault();
 
+    if (!taskText) {
+      setErrorTaskText('Informe o nome da tarefa');
+      return;
+    }
+
     const newTask = {
       id: new Date().getTime(),
       content: taskText,
@@ -67,6 +87,7 @@ function App() {
     }
 
     setTasks((state) => [...state, newTask])
+    setErrorTaskText('');
   }
 
   return (
@@ -77,12 +98,15 @@ function App() {
         <main>
 
           <form className={styles.form} onSubmit={handleAddNewTask}>
-            <input
-              type="text"
-              placeholder="Adicione uma nova tarefa"
-              value={taskText}
-              onChange={e => setTaskText(e.target.value)}
-            />
+            <div>
+              <input
+                type="text"
+                placeholder="Adicione uma nova tarefa"
+                value={taskText}
+                onChange={e => setTaskText(e.target.value)}
+              />
+              <small>{errortaskText}</small>
+            </div>
             <button type="submit">
               Criar <PlusCircle size={20} weight="bold" />
             </button>
